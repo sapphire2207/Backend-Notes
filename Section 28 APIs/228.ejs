@@ -1,0 +1,39 @@
+<!-- API AUTHENTICATION -->
+
+<!-- The ability to prove that you have the rights to access a particular API -->
+<!-- Previously, we saw that we were able to make very simple GET requests using Axios, or coming from our server side and also doing it via Postman, but you can imagine that there are a lot of scenarios where maybe you don't want everybody to be able to access your API. -->
+
+<!-- Let's say that the data that you hold behind your API is a resource, right? Let's view it as money because after all, in our current day and age, data is extremely valuable. In that case, let's imagine that we have our data locked up in a vault like a bank does, and our API is the front desk where we can take and handle requests from customers and clients. So let's say somebody bad comes along and says, "Well, I'd like to get Â£100, please" using the API, and they try to get hold of some resource. Now so far this works with everything that we've seen, our API would say, "Well, here you go. Here's the money that you requested," and off he goes. What we want instead is in certain scenarios we want to be able to protect the resources behind our API by using authentication. -->
+
+<!-- There are 4 tiers in authentication:-
+No authentication
+Basic authentication
+API key based authorization
+Token based authentication -->
+
+<!-- No Authentication -->
+<!-- For example, when we worked with the Bored API, none of the endpoints in the API required any sort of authentication. So what can an API do to prevent abuse of the API? Let's say somebody makes way too many requests and there's no way to check who they are or where they're coming from, then the way the API providers might add a safety check is to put in a Rate Limit. As you saw in the bored APIs instance, we had a rate limit of 100 requests per 15 minutes and I put in that rate limit so that under most cases as a student, that should be enough for you to work with the API, and get hold of the data and try out the things you want to try, without hitting it up too much and then ending up making the API go down for everyone. -->
+
+
+<!-- BASIC AUTHENTICATION -->
+<!-- And as the name suggests, it is pretty basic.So how does it work?Well, you provide a username and password when you make your API request.What that means is you are authenticating yourself to the API provider.You have an account with the API provider,by providing these two pieces of information,you are proving your identity.Usually, the way that Basic Authentication is done is by passing over. Base64 encoded string in the header of the request -->
+<!-- What is Base64 encoding? Well, it's basically taking text which is ASCII,so anything that you can type on your keyboard and that can be converted into bits.So zeros and ones to represent that particular character.And then we can take the bits and then encode it into another character. -->
+<!-- Each character that you can think of is represented in binary.And then by taking that binary and passing it through a special encoding method, we end up with Base64.And then we simply format it in this format,so the username: password,and we convert all of this into Base64.So you'll end up with some sort of long string full of characters that represents this data but in Base64.And then what you can do is you can add this to an Authorization header and you can pass this data along when you make your requests. -->
+<!-- https://secrets-api.appbrewery.com/  ==> refer for documentation-->
+<!-- Now using postman first through POST/register, register yourself as a user and then hit the GET/all  by providing the details in authorization header-->
+
+
+<!-- API KEY-BASED AUTHORIZATION -->
+<!-- Authorization is something that allows you to use an API.Authentication is something that allows you to be identified as a user to the API provider. -->
+<!-- You'll see that a lot of public APIs use API keys and it's really useful because you can then track
+the usage per API key. So for example, if you signed up for the Google Maps API, you can use all sorts of different APIs that they provide, for example, the Places API to find all the different things that show up on Google
+Maps, or you can use the Distance Matrix to calculate the distance between two points in time, again, using
+Google's APIs. And every single time when you make a request, you need to use this key before you can get back a response -->
+<!-- Now using postman first generate an api key, then hit the filter endpoint, add query parameters if you want and then in authorization => put key is apiKey and paste your key here and add it to queryparams or authorization header, then you will reach your desired goal -->
+
+
+<!-- TOKEN BASED AUTHENTICATION -->
+<!-- Normally you'll see Token Based Authentication as OAuth and OAuth 2.0 is probably the industry standardfor doing token-based authentication.And this is kind of what happens behind the scenes.You have a user for a service and you want to be able to act on their behalf, so you get them to signin with their username and password on the API provider's website and thenthe API provider generates a token off the back of that.And then this token can be passed back to you as the third party and you can use this token to interactwith the API. -->
+<!-- So let's see this as a real life example.So let's say that you are building a third party app, say it's a weather app, but you have a specialtwist on the app where you are going to get hold of a user's events in their Google calendar.So you want to see that they have a meeting, for example, on Tuesday and it's happening in Baltimore.So you grab all of these pieces of data and you look at the weather for that location and that date,and maybe you would be able to send the user an alert to tell them to bring an umbrella to that particularevent.That's the idea behind interacting with the Google Calendar APIs. For the user to be able to grant youaccess to this data,well, what do you have to do? If you weren't using token-based authentication, then you would have togive us, this third party, the username and password, so that we can use this to interact with theGoogle calendar API. -->
+<!-- Instead, what we're able to do is we can use token-based authentication or OAuth to get the user tosign in with Google, and this generates a token for us to get hold of and then we can use this tokento interact with the Google Calendar API. And then we can get hold of the user's events, their meetings,we can even post data or delete data,we can basically interact with Google calendar as this user without ever needing to get hold of theirusername and password.And instead all of that security stuff is handled by Google.So this is a way more secure way of doing API authentication.And every time you've seen this screen where it's asking you to authorize a particular app on the behalfof your Google account, then you have performed this process. -->
+<!-- Now using postman first using get-auth-token generate a token and hit the secrets/id by adding the token to the authorization header -->

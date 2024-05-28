@@ -1,0 +1,3 @@
+// Forking and Pull Requests:-
+
+// If you have a local and a remote repository, then a second person can access the same remote repository on their own remote repository by forking it, and then using git clone they can copy clone the remote repository to their local repository and make the changes and again update the changes using git push and, now if the first peron is happy with the changes made, now to update the entire code, it can be done using pull requests
